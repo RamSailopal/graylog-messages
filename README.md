@@ -14,9 +14,9 @@ A working deployment of Graylog Server with a GELF HTTP input running pn a given
 
 Parameters - 
 
-                 First parameter - The Address of the graylog server
-                 Second parameter - The port of the GRaylog server
-                 Third Paramter - The message to send
+                 First Parameter - The Address of the graylog server
+                 Second Parameter - The port of the GRaylog server
+                 Third Parameter - The message to send
                  
 Usage Example - 
 
@@ -28,9 +28,9 @@ The message will then show in Graylog as shown in the above picture
 
 Parameters - 
 
-                 First parameter - Start, stop or list
-                 Second parameter - The Address of the graylog server
-                 Third parameter - The port of the Graylog server
+                 First Parameter - Start, stop or list
+                 Second Parameter - The Address of the graylog server
+                 Third Parameter - The port of the Graylog server
                  Fourth Parameter - The file to process
                  Fifth Parameter - The name of messaging stream (multiple streams can be started and run at the same time)
                  
