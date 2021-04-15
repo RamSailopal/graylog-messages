@@ -24,6 +24,24 @@ Usage Example -
                  
 The message will then show in Graylog as shown in the above picture
 
+<b>File processing send</b>
+
+Parameters - 
+
+                 First parameter - Start, stop or list
+                 Second parameter - The Address of the graylog server
+                 Third parameter - The port of the Graylog server
+                 Fourth Parameter - The file to process
+                 Fifth Parameter - The name of messaging stream (multiple streams can be started and run at the same time)
+                 
+Usage Example - 
+
+                 graysh "start" "graylog-server" "12202" "/var/log/messages" "var-log-messages"
+                 
+                 graysh "list"
+                 var-log-messages
+                 
+                 graysh "stop" "var-log-messages"
 
  
                  
