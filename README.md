@@ -42,6 +42,13 @@ Usage Example -
                  var-log-messages
                  
                  graysh "stop" "var-log-messages"
+                 
+ 
+ <b>Installation</b>
+ 
+                  git clone https://github.com/RamSailopal/graylog-messages.git
+                  cd graylog-messages
+                  ./install.sh
 
  
                  
