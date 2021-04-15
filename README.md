@@ -1,3 +1,3 @@
 # graylog-messages
 
-![alt text](graylog.png)
+![alt text](graylog.PNG)
