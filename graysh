@@ -1,0 +1,52 @@
+#!/bin/bash
+if [[ "$1" != "start" && "$1" != "stop" && "$1" != "list" ]]
+then
+	echo "Pass stop, start or list as the first parameter"
+fi
+if [[ "$1" == "start" ]]
+then
+	if [[ "$2" == "" ]]
+        then
+             echo "Pass the address of thegraylog server as the second parameter"
+	     exit
+        fi
+        if [[ "$3" == "" ]]
+        then
+             echo "Pass the port of the Graylog server as the third parameter"
+             exit
+        fi
+        if [[ "$4" == "" ]]
+        then
+             echo "Pass the file location as the fourth parameter"
+             exit
+        fi
+        if [[ "$5" == "" ]]
+        then
+             echo "Pass a name for the process as the fifth parameter"
+             exit
+        fi
+        graymessages "$2" "$3" "$4" &
+        echo $! > "/var/run/graymessages/$5.pid"
+elif [[ "$1" == "stop" ]]
+        then
+                if [[ ! -f "/var/run/graymessages/$2.pid" ]]
+                then
+                    echo "Streaming process - $2 doesn't exist"
+                    exit 1
+		fi
+		kill -9 $(cat "/var/run/graymessages/$2.pid")
+        	rm "/var/run/graymessages/$2.pid"
+else
+        fnd=0
+        for fil in $(find /var/run/graymessages -type f)
+        do
+           fyle=${fil%.pid}
+           echo ${fyle##*/}
+           fnd=1
+        done
+        if [[ "$fnd" == "0" ]]
+        then
+		echo "No stream processes running"
+        fi
+fi
+
