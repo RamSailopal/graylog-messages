@@ -4,11 +4,11 @@
 
 <b>Background</b>
 
-Two command line utility to send messages to a Graylog server. One utility sends messages messages by message and the other process a file
+Two command line utility to send messages to a Graylog server. One utility sends messages message by message and the other processes a file
 
 <b>Prerequisites</b>
 
-A working deployment of Graylog Server with a GELF HTTP input running pn a given port
+A working deployment of Graylog Server with a GELF HTTP input running on a given port
 
 <b>Single message send</b>
 
