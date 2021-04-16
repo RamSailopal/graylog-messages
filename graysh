@@ -1,7 +1,8 @@
 #!/bin/bash
-if [[ "$1" != "start" && "$1" != "stop" && "$1" != "list" ]]
+if [[ "$1" != "start" && "$1" != "stop" && "$1" != "list" && "$1" != "clear" ]]
 then
-	echo "Pass stop, start or list as the first parameter"
+	echo "Pass stop, start, clear or list as the first parameter"
+        exit
 fi
 if [[ "$1" == "start" ]]
 then
@@ -25,17 +26,21 @@ then
              echo "Pass a name for the process as the fifth parameter"
              exit
         fi
-        graymessages "$2" "$3" "$4" &
+        graymessages "$2" "$3" "$4" "$5" &
         echo $! > "/var/run/graymessages/$5.pid"
 elif [[ "$1" == "stop" ]]
+then
+	if [[ ! -f "/var/run/graymessages/$2.pid" ]]
         then
-                if [[ ! -f "/var/run/graymessages/$2.pid" ]]
-                then
-                    echo "Streaming process - $2 doesn't exist"
-                    exit 1
-		fi
-		kill -9 $(cat "/var/run/graymessages/$2.pid")
-        	rm "/var/run/graymessages/$2.pid"
+        	echo "Streaming process - $2 doesn't exist"
+                exit 1
+	fi
+	kill -9 $(cat "/var/run/graymessages/$2.pid")
+        rm "/var/run/graymessages/$2.pid"
+elif [[ "$1" == "clear" ]]
+then
+	awk 'NR==FNR && /graymessages/ && $2 != PROCINFO["pid"] { map1[$NF]="1" } NR != FNR { fle=$0;gsub("/var/run/graymessages/","",$0);split($0,map,".");if (map1[map[1]]!="1") { system("rm -f "fle) } }' <(ps -ef) <(find "/var/run/graymessages" -type f)
+
 else
         fnd=0
         for fil in $(find /var/run/graymessages -type f)

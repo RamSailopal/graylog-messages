@@ -28,7 +28,7 @@ The message will then show in Graylog as shown in the above picture
 
 Parameters - 
 
-                 First Parameter - Start, stop or list
+                 First Parameter - Start, stop, clear or list
                  Second Parameter - The Address of the graylog server
                  Third Parameter - The port of the Graylog server
                  Fourth Parameter - The file to process
@@ -42,6 +42,10 @@ Usage Example -
                  var-log-messages
                  
                  graysh "stop" "var-log-messages"
+
+                 graysh clear
+
+graysh clear can be used to clear pid files for message streams if those streams are not running.
                  
  
  <b>Installation</b>
